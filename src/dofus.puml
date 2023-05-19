@@ -1,0 +1,45 @@
+@startuml
+class Gamemode {
+obj : Board
+start()
+end()
+reloadTheGame()
+
+}
+class Board {
+boardSize : int
+casesList : Case []
+Visualization()
+}
+class Case{
+x : int
+y : int
+persona : Character
+}
+
+class Character {
+hp : int
+walkingDistance : int
+force : int
+attackDistance : int
+currentPosition : Case
+fight( Target : Case )
+damageReceived( Damage : int )
+walking( Target : Case)
+}
+class Warrior
+class Mage
+
+Character <|-- Warrior
+Character <|-- Mage
+Character --o Case
+
+Board --o "9+" Case
+
+Case --> Character
+
+
+
+Gamemode --> Board
+
+@enduml
