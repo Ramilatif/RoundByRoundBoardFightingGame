@@ -26,8 +26,4 @@ public class Case {
     public int getY() {
         return this.y;
     }
-
-
-    public void visualization() {
-    }
 }

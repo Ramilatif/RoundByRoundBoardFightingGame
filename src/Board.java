@@ -17,23 +17,18 @@ public class Board {
         }
     }
 
-    public void setCaseAtPosition(Case newCase, int x, int y) {
-        casesList[x][y] = newCase;
-    }
-
     public void visualization(Character player1, Character player2) {
         for (int line = 0; line < boardSize; line++) {
             for (int column = 0; column < boardSize; column++) {
                 if (casesList[line][column].getPersona() == null) {
-                    //casesList[line][column].visualization();
-                    System.out.print("case(" + line + " " + column + ") | ");
+                    System.out.print("case | ");
+
                 } else if (casesList[line][column].getPersona().getNumeroPlayer() == true) {
-                    //casesList[line][column].visualization();
-                    System.out.print("case(player1 ) |");
+                    player1.vizusalisationObject();
+
                 } else if (casesList[line][column].getPersona().getNumeroPlayer() == false) {
-                    System.out.print("case(player2 ) |");
+                    player2.vizusalisationObject();
                 }
-                //else System.out.print(casesList[line][column].getPersona().getNumeroPlayer());
             }
             System.out.println("\n-------------------------------------------------");
 
@@ -49,7 +44,4 @@ public class Board {
         return this.boardSize;
     }
 
-    public void setBoardSize(int size) {
-
-    }
 }

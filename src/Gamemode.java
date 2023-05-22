@@ -3,26 +3,14 @@ import java.util.Scanner;
 public class Gamemode {
 
 
-    public static int choise1Class() {
+    public static int dialogueChoiseClass(Character player, String playerName) {
         Scanner choice1 = new Scanner(System.in);
-        System.out.print(" Player 1 choississez votre classe:\n 1: Mage\n 2: Guerrier\n");
-        int a = choice1.nextInt();
-        Character player1 = null;
-        while (a != 1 && a != 2) {
-            a = choice1.nextInt();
+        System.out.print(" " + playerName + " choississez votre classe:\n 1: Mage\n 2: Guerrier\n");
+        int answerClass = choice1.nextInt();
+        while (answerClass != 1 && answerClass != 2) {
+            answerClass = choice1.nextInt();
         }
-        return a;
-    }
-
-    public static int choise2Class() {
-        Scanner choice1 = new Scanner(System.in);
-        System.out.print(" Player 2 choississez votre classe:\n 1: Mage\n 2: Guerrier\n");
-        int b = choice1.nextInt();
-        Character player2 = null;
-        while (b != 1 && b != 2) {
-            b = choice1.nextInt();
-        }
-        return b;
+        return answerClass;
     }
 
     public static int DialogueWalkingDirection(String action) {
@@ -60,5 +48,25 @@ public class Gamemode {
             futurCase = board.getCaseFromPosition(currentPosition.getX(), currentPosition.getY() + answerD);
         } else futurCase = board.getCaseFromPosition(currentPosition.getX(), currentPosition.getY() - answerD);
         return futurCase;
+    }
+
+    public static Character choiceClasse(Board board, String playerName, Character player, Case playerCase, Boolean numplayer, int playerPlacementX, int playerPlacementY) {
+
+        playerCase = board.getCaseFromPosition(playerPlacementX, playerPlacementY);
+
+        if (dialogueChoiseClass(player, playerName) == 1) {
+            player = new Mage(playerCase, numplayer);
+
+
+            System.out.print(" Vous avez choisi la classe Mage\n");
+        } else {
+            player = new Warrior(playerCase, numplayer);
+
+            System.out.print(" Vous avez choisi la classe Guerrier\n");
+
+        }
+
+        playerCase.setPersona(player);
+        return player;
     }
 }

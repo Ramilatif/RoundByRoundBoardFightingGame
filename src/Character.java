@@ -1,30 +1,22 @@
 import java.util.Scanner;
 
-public class Character {
+abstract public class Character implements Vizualisation {
+
     int hp;
     int walkingDistance;
     int force;
     int attackDistance;
 
-    boolean numeroPlayer;
+    boolean numplayer;
     Case currentPosition;
 
-    public Character() {
-        this.hp = 0;
-        this.walkingDistance = 0;
-        this.force = 0;
-        this.attackDistance = 0;
-        this.currentPosition = null;
-        this.numeroPlayer = true;
-    }
-
-    protected Character(int hp, int walkingDistance, int force, int attackDistance, Case currentPosition, boolean numeroPlayer) {
+    protected Character(int hp, int walkingDistance, int force, int attackDistance, Case currentPosition, boolean numplayer) {
         this.hp = hp;
         this.walkingDistance = walkingDistance;
         this.force = force;
         this.attackDistance = attackDistance;
         this.currentPosition = currentPosition;
-        this.numeroPlayer = numeroPlayer;
+        this.numplayer = numplayer;
     }
 
     public int getWalkingDistance() {
@@ -44,7 +36,7 @@ public class Character {
     }
 
     public boolean getNumeroPlayer() {
-        return numeroPlayer;
+        return numplayer;
     }
 
     public void setHp(int hp) {
@@ -54,7 +46,6 @@ public class Character {
     public void setCurrentPosition(Case playerCase) {
         this.currentPosition = playerCase;
     }
-
 
     public void walkingDirection(Board board, Gamemode gamemode, Character persona, int travelling) {
         boolean reboot = true;
@@ -106,6 +97,7 @@ public class Character {
 
 
 }
+
 
 
 
