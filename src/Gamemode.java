@@ -13,9 +13,9 @@ public class Gamemode {
         return answerClass;
     }
 
-    public static int DialogueWalkingDirection(String action) {
+    public static int DialogueWalkingDirection(String action, String player) {
         Scanner answerPlacement = new Scanner(System.in);
-        System.out.println("Ou voulez-vous vous " + action + "? \n 1:Haut \n 2:Bas \n 3:Droite \n 4:Gauche");
+        System.out.println(player +":Ou voulez-vous vous " + action + "? \n 1:Haut \n 2:Bas \n 3:Droite \n 4:Gauche");
         int answerP = answerPlacement.nextInt();
         while (answerP != 1 && answerP != 2 && answerP != 3 && answerP != 4) {
             answerP = answerPlacement.nextInt();
@@ -36,8 +36,8 @@ public class Gamemode {
 
     }
 
-    public static Case choiceCase(Board board, Character persona, String action, Case currentPosition, int choiceAction) {
-        int answerP = DialogueWalkingDirection(action);
+    public static Case choiceCase(Board board, Character persona, String action, String player, Case currentPosition, int choiceAction) {
+        int answerP = DialogueWalkingDirection(action, player);
         int answerD = dialogueWalkingDirectionBIS(action, persona, choiceAction);
         Case futurCase = null;
         if (answerP == 1) {

@@ -47,18 +47,18 @@ abstract public class Character implements Vizualisation {
         this.currentPosition = playerCase;
     }
 
-    public void walkingDirection(Board board, Gamemode gamemode, Character persona, int travelling) {
+    public void walkingDirection(Board board, Gamemode gamemode, Character persona, int travelling, String player) {
         boolean reboot = true;
-
 
         while (reboot == true) {
             try {
-                Case futurCase = gamemode.choiceCase(board, persona, "deplacer", currentPosition, travelling);
+                Case futurCase = gamemode.choiceCase(board, persona, "deplacer", player, currentPosition, travelling);
 
 
-                this.currentPosition.setPersona(null);
-                this.setCurrentPosition(futurCase);
+
                 if (futurCase.getPersona() == null) {
+                    this.currentPosition.setPersona(null);
+                    this.setCurrentPosition(futurCase);
                     currentPosition.setPersona(persona);
                     reboot = false;
                 } else System.out.println("Il y a deja un joueur sur cette case");
@@ -77,17 +77,20 @@ abstract public class Character implements Vizualisation {
 
     }
 
-    public void fight(Character playerReceived, Board board, Gamemode gamemode) {
+    public void fight(Character playerReceived, Board board, Gamemode gamemode, String player) {
         boolean reboot = true;
 
-        while (reboot == true) {
-            try {
-                Case fightCase = gamemode.choiceCase(board, this, "attaquer", currentPosition, getForce());
 
+
+        while (reboot == true) {
+            try {  Case fightCase = gamemode.choiceCase(board, this, "attaquer", player, currentPosition, getForce());
                 if (fightCase.getPersona() == null) {
                     System.out.println("L'attaque n'a touché aucun joueur");
-                } else damageReceived(playerReceived);
-                reboot = false;
+                }else if (fightCase.getPersona() == this) {
+                    System.out.println("Vous ne pouvez pas vous attaquer");
+                    reboot = false;
+                } else {damageReceived(playerReceived);
+                reboot = false;}
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Le personnage attaque en dehors du plateau \n");
 
